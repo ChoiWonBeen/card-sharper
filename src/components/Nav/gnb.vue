@@ -1,6 +1,9 @@
 <template>
     <div class="gnb">
-        aa
+        this is global navigation bar
+        <br>
+        <router-link to="/">MainPage</router-link> |
+        <router-link to="/game">GamePage</router-link>
     </div>
 </template>
 
