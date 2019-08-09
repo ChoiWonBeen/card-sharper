@@ -8,17 +8,12 @@
         >
             <v-list dense>
                 <v-list-item @click.stop="right = !right">
-                    <v-list-item-action>
-                        <v-icon>exit_to_app</v-icon>
-                    </v-list-item-action>
                     <v-list-item-content>
-                        <v-list-item-title>Open Temporary Drawer</v-list-item-title>
+                        <v-list-item-title>잔액</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
-
-
 
         <v-navigation-drawer
                 v-model="drawer"
@@ -26,11 +21,8 @@
         >
             <v-list dense>
                 <v-list-item @click.stop="left = !left">
-                    <v-list-item-action>
-                        <v-icon>exit_to_app</v-icon>
-                    </v-list-item-action>
                     <v-list-item-content>
-                        <v-list-item-title>Open Temporary Drawer</v-list-item-title>
+                        <v-list-item-title>족보</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
@@ -80,6 +72,9 @@
                             </template>
                             <span>Codepen</span>
                         </v-tooltip>
+                        <div>
+                            <img src="@/assets/CardImage/1.gif" alt="">
+                        </div>
                     </v-flex>
                 </v-layout>
             </v-container>
@@ -113,3 +108,10 @@
         }),
     }
 </script>
+
+<style scoped>
+    .card{
+        width:46px;
+        height: 72px;
+    }
+</style>
