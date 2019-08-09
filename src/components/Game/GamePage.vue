@@ -34,6 +34,8 @@
                 temporary
         ></v-navigation-drawer>
 
+        <opponent-field></opponent-field>
+
         <v-content>
             <v-container
                     fluid
@@ -93,12 +95,14 @@
 
 <script>
     import fnb from "../Nav/fnb";
+    import opponentField from "./OpponentField/OpponentField.vue"
     export default {
         props: {
             source: String,
         },
         components: {
-            'fnb' : fnb
+            'fnb' : fnb,
+            'opponent-field': opponentField
         },
         data: () => ({
             drawer: null,
