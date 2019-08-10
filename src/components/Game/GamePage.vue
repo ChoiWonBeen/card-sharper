@@ -35,52 +35,13 @@
         ></v-navigation-drawer>
 
         <opponent-field></opponent-field>
+        <opponent-money></opponent-money>
+        <betting></betting>
+        <user-money></user-money>
+        <user-field></user-field>
 
-        <v-content>
-            <v-container
-                    fluid
-                    fill-height
-            >
-                <v-layout
-                        justify-center
-                        align-center
-                >
-                    <v-flex shrink>
-                        <v-tooltip right>
-                            <template v-slot:activator="{ on }">
-                                <v-btn
-                                        :href="source"
-                                        icon
-                                        large
-                                        target="_blank"
-                                        v-on="on"
-                                >
-                                    <v-icon large>mdi-code-tags</v-icon>
-                                </v-btn>
-                            </template>
-                            <span>Source</span>
-                        </v-tooltip>
-                        <v-tooltip right>
-                            <template v-slot:activator="{ on }">
-                                <v-btn
-                                        icon
-                                        large
-                                        href="https://codepen.io/johnjleider/pen/QewYYx"
-                                        target="_blank"
-                                        v-on="on"
-                                >
-                                    <v-icon large>mdi-codepen</v-icon>
-                                </v-btn>
-                            </template>
-                            <span>Codepen</span>
-                        </v-tooltip>
-                        <div>
-                            <img src="@/assets/CardImage/1.gif" alt="">
-                        </div>
-                    </v-flex>
-                </v-layout>
-            </v-container>
-        </v-content>
+
+
 
         <v-navigation-drawer
                 v-model="right"
@@ -94,15 +55,24 @@
 </template>
 
 <script>
-    import fnb from "../Nav/fnb";
-    import opponentField from "./OpponentField/OpponentField.vue"
+    import fnb from "../Nav/fnb"
+    import OpponentField from "./Opponent/OpponentField.vue"
+    import OpponentMoney from "./Opponent/OpponentMoney"
+    import Betting from "./Betting/Betting"
+    import UserField from "./User/UserField"
+    import UserMoney from "./User/UserMoney"
+
     export default {
         props: {
             source: String,
         },
         components: {
             'fnb' : fnb,
-            'opponent-field': opponentField
+            'opponent-field': OpponentField,
+            'opponent-money': OpponentMoney,
+            'betting': Betting,
+            'user-field':UserField,
+            'user-money':UserMoney
         },
         data: () => ({
             drawer: null,

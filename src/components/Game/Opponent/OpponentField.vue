@@ -1,8 +1,7 @@
 <template>
-    <v-content
-            justify-center>
-            <div>아</div>
-    </v-content>
+   <div class="opponent__field">
+       카드존
+   </div>
 </template>
 
 <script>
@@ -12,5 +11,8 @@
 </script>
 
 <style scoped>
+    .opponent__field {
+        text-align: center;
+    }
 
 </style>
