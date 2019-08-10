@@ -1,6 +1,7 @@
 <template>
    <div class="opponent__field">
-       카드존
+       <img src="@/assets/CardImage/0.png" alt="뒷면" class="card">
+       <img src="@/assets/CardImage/0.png" alt="뒷면" class="card">
    </div>
 </template>
 
@@ -14,5 +15,4 @@
     .opponent__field {
         text-align: center;
     }
-
 </style>

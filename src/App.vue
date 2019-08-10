@@ -10,3 +10,11 @@ export default {
   name: 'App'
 };
 </script>
+
+<style>
+  .card{
+    width:46px;
+    height: 72px;
+    margin-left: 2px;
+  }
+</style>

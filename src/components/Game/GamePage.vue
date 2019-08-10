@@ -23,6 +23,8 @@
                 <v-list-item @click.stop="left = !left">
                     <v-list-item-content>
                         <v-list-item-title>족보</v-list-item-title>
+                        <img src="@/assets/pedigree1.png" alt="족보" style="width: 224px">
+                        <img src="@/assets/pedigree2.png" alt="족보" style="width: 250px">
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
@@ -39,9 +41,6 @@
         <betting></betting>
         <user-money></user-money>
         <user-field></user-field>
-
-
-
 
         <v-navigation-drawer
                 v-model="right"
@@ -64,7 +63,7 @@
 
     export default {
         props: {
-            source: String,
+
         },
         components: {
             'fnb' : fnb,
@@ -84,8 +83,5 @@
 </script>
 
 <style scoped>
-    .card{
-        width:46px;
-        height: 72px;
-    }
+
 </style>

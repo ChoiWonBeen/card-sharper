@@ -1,6 +1,7 @@
 <template>
     <div class="user__field">
-        카드존
+        <img src="@/assets/CardImage/2.gif" alt="" class="card">
+        <img src="@/assets/CardImage/16.gif" alt="" class="card">
     </div>
 </template>
 
