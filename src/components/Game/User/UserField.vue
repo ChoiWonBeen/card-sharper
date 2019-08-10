@@ -1,7 +1,7 @@
 <template>
     <div class="user__field">
-        <img src="@/assets/CardImage/2.gif" alt="" class="card">
-        <img src="@/assets/CardImage/16.gif" alt="" class="card">
+        <img src="@/assets/CardImage/3.gif" alt="" class="card">
+        <img src="@/assets/CardImage/8.gif" alt="" class="card">
     </div>
 </template>
 

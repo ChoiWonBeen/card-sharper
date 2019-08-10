@@ -1,6 +1,6 @@
 <template>
     <div class="opponent__money">
-        적 잔액
+        소지 금액 : {{ this.$store.state.UserMoney }}
     </div>
 </template>
 
