@@ -16,6 +16,6 @@
 
 <style scoped>
     .opponent__money {
-        margin-left: 256px;
+        margin-left: 300px;
     }
 </style>

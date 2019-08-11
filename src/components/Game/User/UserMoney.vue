@@ -17,6 +17,6 @@
 <style scoped>
     .user__money {
         text-align: right;
-        margin-right: 256px;
+        margin-right: 300px;
     }
 </style>

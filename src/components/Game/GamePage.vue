@@ -6,10 +6,7 @@
             <opponent-field></opponent-field>
             <opponent-money></opponent-money>
         
-            <before-betting
-                    v-if="(start === 'no')"
-                    >
-            </before-betting>
+            <before-betting v-if="(start === 'no')"></before-betting>
             <betting v-if="(start === 'yes')"></betting>
 
             <user-money></user-money>
@@ -21,6 +18,7 @@
 
 <script>
     import {mapGetters} from 'vuex'
+
     import fnb from "../Nav/fnb"
     import OpponentField from "./Opponent/OpponentField.vue"
     import OpponentMoney from "./Opponent/OpponentMoney"

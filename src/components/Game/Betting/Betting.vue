@@ -29,7 +29,7 @@
                                 </v-list-item>
 
                                 <v-list-item>
-                                    <v-list-item-content>
+                                    <v-list-item-content @click="goHalf(raisedSum)">
                                         <v-list-item-title>하프</v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
@@ -77,12 +77,18 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
+    import {mapGetters, mapMutations} from 'vuex'
 
     export default {
         name: "Betting",
         computed: {
             ...mapGetters(['userRaised','opponentRaised','raisedSum'])
+        },
+        methods: {
+            ...mapMutations(['call','half']),
+            goHalf: function (raising) {
+                this.half(raising)
+            }
         },
         data () {
             return {
