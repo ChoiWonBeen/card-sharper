@@ -5,16 +5,37 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    UserMoney: 100,
-    OpponentMoney: 100,
-    raised: 0,
+    start:'no',
+    userMoney: 100,
+    opponentMoney: 100,
+    raisedSum:0,
+    userRaised:0,
+    opponentRaised:0,
+
   },
   getters: {
-    
+    userMoney: function (state) {
+      return state.userMoney
+    },
+    opponentMoney: function (state) {
+      return state.opponentMoney
+    },
+    raisedSum: function (state) {
+      return state.raisedSum
+    },
+    userRaised: function (state) {
+      return state.userRaised
+    },
+    opponentRaised: function (state) {
+      return state.opponentRaised
+    },
+    start:function (state) {
+      return state.start
+    }
   },
   mutations: {
-    changeMoney : function (state) {
-
+    clickStart: function (state, yes) {
+      state.start = yes
     }
   },
   actions: {

@@ -1,12 +1,16 @@
 <template>
-    <div class="user__money">
-        소지 금액 : {{ this.$store.state.UserMoney }}
+    <div class="user__money" v-if="(start==='yes')">
+        소지 금액 : {{ userMoney }}
     </div>
 </template>
 
 <script>
+    import {mapGetters} from 'vuex'
     export default {
-        name: "UserMoney"
+        name: "UserMoney",
+        computed: {
+            ...mapGetters(['userMoney','start'])
+        }
     }
 </script>
 
