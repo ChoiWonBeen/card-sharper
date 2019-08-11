@@ -9,6 +9,9 @@ export default new Vuex.Store({
     OpponentMoney: 100,
     raised: 0,
   },
+  getters: {
+    
+  },
   mutations: {
     changeMoney : function (state) {
 

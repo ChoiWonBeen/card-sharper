@@ -7,50 +7,76 @@
             <v-layout
                     justify-center
                     align-center
+                    class="board__money"
+            >
+                100000000
+            </v-layout>
+            <v-layout
+                    justify-center
+                    align-center
             >
                 <v-flex shrink>
-                    <v-tooltip right>
-                        <template v-slot:activator="{ on }">
-                            <v-btn
-                                    icon
-                                    large
-                                    target="_blank"
-                                    v-on="on"
-                            >
-                                <v-icon large>mdi-code-tags</v-icon>
-                            </v-btn>
-                        </template>
-                        <span>Source</span>
-                    </v-tooltip>
-                    <v-tooltip right>
-                        <template v-slot:activator="{ on }">
-                            <v-btn
-                                    icon
-                                    large
-                                    href="https://codepen.io/johnjleider/pen/QewYYx"
-                                    target="_blank"
-                                    v-on="on"
-                            >
-                                <v-icon large>mdi-codepen</v-icon>
-                            </v-btn>
-                        </template>
-                        <span>Codepen</span>
-                    </v-tooltip>
-                    <div>
-                        <img src="@/assets/CardImage/1.gif" alt="">
-                    </div>
+                    <v-card class="betting">
+                        <v-list rounded>
+                            <v-subheader>전체 판돈 : {{ this.$store.state.raised}}</v-subheader>
+                            <v-list-item-group color="primary">
+                                <v-list-item
+                                        v-for="(item, i) in items"
+                                        :key="i"
+                                >
+                                    <v-list-item-content>
+                                        <v-list-item-title v-text="item.text"></v-list-item-title>
+                                    </v-list-item-content>
+                                </v-list-item>
+                            </v-list-item-group>
+                        </v-list>
+                    </v-card>
                 </v-flex>
             </v-layout>
+            <v-layout
+                    justify-center
+                    align-center
+                    class="board__money"
+            >1000 </v-layout>
         </v-container>
     </v-content>
 </template>
 
 <script>
     export default {
-        name: "Betting"
+        name: "Betting",
+        data () {
+            return {
+                items: [
+                    {
+                        text : "콜"
+                    },
+                    {
+                        text : "하프"
+                    },
+                    {
+                        text : "삥"
+                    },
+                    {
+                        text : "따당"
+                    },
+                    {
+                        text : "다이"
+                    },
+                    {
+                        text : "올인"
+                    },
+                ]
+            }
+        },
     }
 </script>
 
 <style scoped>
-
+    .betting {
+        width: 200px;
+    }
+    .board__money {
+        width: 207px;
+    }
 </style>
