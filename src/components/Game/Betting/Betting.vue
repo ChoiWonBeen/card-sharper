@@ -23,7 +23,7 @@
                             <v-list-item-group color="primary">
 
                                 <v-list-item>
-                                    <v-list-item-content>
+                                    <v-list-item-content @click="goCall(opponentRaised)">
                                         <v-list-item-title>콜</v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
@@ -35,7 +35,7 @@
                                 </v-list-item>
 
                                 <v-list-item>
-                                    <v-list-item-content>
+                                    <v-list-item-content @click="goBbing(100)">
                                         <v-list-item-title>삥</v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
@@ -85,9 +85,19 @@
             ...mapGetters(['userRaised','opponentRaised','raisedSum'])
         },
         methods: {
-            ...mapMutations(['call','half']),
+            ...mapMutations(['called','half','bbing']),
+
+            goCall: function (opponentRaising) {
+                this.called(opponentRaising)
+            },
             goHalf: function (raising) {
                 this.half(raising)
+            },
+            goBbing: function (raising) {
+                this.bbing(raising)
+            },
+            opponentTurn: function(){
+                
             }
         },
         data () {
