@@ -43,9 +43,9 @@ export default new Vuex.Store({
     },
 
     called: function (state, opponentRaising) {
-
+      state.userMoney += state.userRaised
       state.userRaised = opponentRaising
-
+      state.userMoney -= state.userRaised
     },
     half: function (state, raised) {
       state.userMoney -= raised/2
@@ -54,6 +54,15 @@ export default new Vuex.Store({
     bbing: function (state, standardRaised) {
       state.userMoney -= standardRaised
       state.userRaised += standardRaised
+    },
+    ddadang: function (state, opponentRaising) {
+      state.userMoney += state.userRaised
+      state.userRaised = opponentRaising * 2
+      state.userMoney -= state.userRaised
+    },
+    allIn: function (state) {
+      state.userRaised += state.userMoney
+      state.userMoney = 0
     }
   },
   actions: {

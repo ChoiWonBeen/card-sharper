@@ -41,13 +41,13 @@
                                 </v-list-item>
 
                                 <v-list-item>
-                                    <v-list-item-content>
+                                    <v-list-item-content @click="goDdadang(opponentRaised)">
                                         <v-list-item-title>따당</v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
 
                                 <v-list-item>
-                                    <v-list-item-content>
+                                    <v-list-item-content @click="goAllIn()">
                                         <v-list-item-title>올인</v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
@@ -85,7 +85,7 @@
             ...mapGetters(['userRaised','opponentRaised','raisedSum'])
         },
         methods: {
-            ...mapMutations(['called','half','bbing']),
+            ...mapMutations(['called','half','bbing','ddadang','allIn']),
 
             goCall: function (opponentRaising) {
                 this.called(opponentRaising)
@@ -96,8 +96,15 @@
             goBbing: function (raising) {
                 this.bbing(raising)
             },
+            goDdadang: function (opponentRaising) {
+                this.ddadang(opponentRaising)
+            },
+            goAllIn: function(){
+                this.allIn()
+                this.opponentTurn()
+            },
             opponentTurn: function(){
-                
+                console.log('a')
             }
         },
         data () {
