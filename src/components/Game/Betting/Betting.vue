@@ -23,31 +23,31 @@
                             <v-list-item-group color="primary">
 
                                 <v-list-item>
-                                    <v-list-item-content @click="goCall(opponentRaised, userRaised)">
+                                    <v-list-item-content @click="goCall(opponentRaised, userRaised, raisedSum, startCallback)">
                                         <v-list-item-title>콜</v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
 
                                 <v-list-item>
-                                    <v-list-item-content @click="goHalf(raisedSum, raisedSum)">
+                                    <v-list-item-content @click="goHalf(opponentRaised, userRaised, raisedSum, startCallback)">
                                         <v-list-item-title>하프</v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
 
                                 <v-list-item>
-                                    <v-list-item-content @click="goBbing(100)">
+                                    <v-list-item-content @click="goBbing(opponentRaised, userRaised, raisedSum, startCallback)">
                                         <v-list-item-title>삥</v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
 
                                 <v-list-item>
-                                    <v-list-item-content @click="goDdadang(opponentRaised)">
+                                    <v-list-item-content @click="goDdadang(opponentRaised, userRaised, raisedSum, startCallback)">
                                         <v-list-item-title>따당</v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
 
                                 <v-list-item>
-                                    <v-list-item-content @click="goAllIn()">
+                                    <v-list-item-content @click="goAllIn(opponentRaised, userRaised, raisedSum, userMoney, startCallback)">
                                         <v-list-item-title>올인</v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
@@ -77,60 +77,89 @@
 </template>
 
 <script>
-    import {mapGetters, mapMutations, mapActions} from 'vuex'
+    import {mapGetters, mapMutations} from 'vuex'
 
     export default {
         name: "Betting",
         computed: {
-            ...mapGetters(['userRaised','opponentRaised','raisedSum'])
+            ...mapGetters(['userRaised','opponentRaised','raisedSum','userMoney'])
         },
         methods: {
-            ...mapMutations(['called','half','bbing','ddadang','allIn','opponentCall','opponentHalf']),
-            ...mapActions(['opponentTurn']),
-            goCall: function (opponentRaising, userRaising) {
+            ...mapMutations(['called','half','bbing','ddadang','allIn','opponentCall','opponentHalf'
+                            ,'opponentDdadang','opponentAllIn','opponentDie']),
+            goCall: function (opponentRaising, userRaising, sumRaising, startCallback) {
                 this.called(opponentRaising)
-                this.opponentTurn(userRaising)
+                if(opponentRaising === userRaising){ alert('승부났어요') }
+                else {
+                    this._promise(true)
+                        .then(function () {
+                            startCallback(opponentRaising, opponentRaising, sumRaising - userRaising + opponentRaising)
+                        })
+                }
             },
-            goHalf: function (raising, raisedSum) {
-                this.half(raising)
-                this.opponentTurn(raisedSum)
+            goHalf: function (opponentRaising, userRaising, sumRaising, startCallback) {
+                this.half(sumRaising)
+                this._promise(true)
+                    .then(function () {
+                        startCallback(opponentRaising, userRaising+sumRaising/2, sumRaising+sumRaising/2)
+                    })
             },
-            goBbing: function (raising) {
-                this.bbing(raising)
-                this.opponentTurn()
+            goBbing: function (opponentRaising, userRaising, sumRaising, startCallback) {
+                this.bbing(100)
+                this._promise(true)
+                    .then(function () {
+                        startCallback(opponentRaising, userRaising+100, sumRaising+100)
+                    })
             },
-            goDdadang: function (opponentRaising) {
+            goDdadang: function (opponentRaising, userRaising, sumRaising, startCallback) {
                 this.ddadang(opponentRaising)
-                this.opponentTurn()
+                this._promise(true)
+                    .then(function () {
+                        startCallback(opponentRaising, opponentRaising*2, (sumRaising-userRaising+opponentRaising)*2)
+                    })
             },
-            goAllIn: function(){
+            goAllIn: function(opponentRaising, userRaising, sumRaising, userMoney, startCallback){
                 this.allIn()
-                this.opponentTurn()
+                this._promise(true)
+                    .then(function () {
+                        startCallback(opponentRaising, userRaising+userMoney, sumRaising+userMoney)
+                    })
             },
-            opponentTurn: function(need){
-                this.opponentHalf(need)
-                let waiting =  Math.floor(Math.random() * (10000 - 3000)) + 3000
-
+            _promise : function (param) {
+                return new Promise(function (resolve, reject) {
+                    window.setTimeout(function () {
+                        if (param) {
+                            resolve("해결 완료");
+                        }
+                        else {
+                            reject(Error("실패!!"));
+                        }
+                    }, 3000);
+                });
+            },
+            startCallback : function (opponentRaising, userRaising, sumRaising) {
                 let random = Math.floor(Math.random() * (5) + 1)
 
                 if(random === 1){
-
+                    this.opponentCall(userRaising)
+                    console.log('콜')
                 }
                 if(random === 2){
-
+                    this.opponentHalf(sumRaising)
+                    console.log('하프')
                 }
                 if(random === 3){
-
+                    this.opponentDdadang(userRaising)
+                    console.log('따당')
                 }
                 if(random === 4){
-
+                    this.opponentAllIn()
+                    console.log('올인')
                 }
                 if(random === 5){
-
+                    alert('상대가 다이를 쳤어요')
                 }
-
-                console.log(random)
-            }
+            },
         },
         data () {
             return {
