@@ -63,7 +63,16 @@ export default new Vuex.Store({
     allIn: function (state) {
       state.userRaised += state.userMoney
       state.userMoney = 0
-    }
+    },
+    opponentCall: function (state, userRaising) {
+      state.opponentMoney += state.opponentRaised
+      state.opponentRaised = userRaising
+      state.opponentMoney -= state.opponentRaised
+    },
+    opponentHalf: function (state, raised) {
+      state.opponentMoney -= raised/2
+      state.opponentRaised += raised/2
+    },
   },
   actions: {
 

@@ -23,13 +23,13 @@
                             <v-list-item-group color="primary">
 
                                 <v-list-item>
-                                    <v-list-item-content @click="goCall(opponentRaised)">
+                                    <v-list-item-content @click="goCall(opponentRaised, userRaised)">
                                         <v-list-item-title>콜</v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
 
                                 <v-list-item>
-                                    <v-list-item-content @click="goHalf(raisedSum)">
+                                    <v-list-item-content @click="goHalf(raisedSum, raisedSum)">
                                         <v-list-item-title>하프</v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
@@ -77,7 +77,7 @@
 </template>
 
 <script>
-    import {mapGetters, mapMutations} from 'vuex'
+    import {mapGetters, mapMutations, mapActions} from 'vuex'
 
     export default {
         name: "Betting",
@@ -85,26 +85,51 @@
             ...mapGetters(['userRaised','opponentRaised','raisedSum'])
         },
         methods: {
-            ...mapMutations(['called','half','bbing','ddadang','allIn']),
-
-            goCall: function (opponentRaising) {
+            ...mapMutations(['called','half','bbing','ddadang','allIn','opponentCall','opponentHalf']),
+            ...mapActions(['opponentTurn']),
+            goCall: function (opponentRaising, userRaising) {
                 this.called(opponentRaising)
+                this.opponentTurn(userRaising)
             },
-            goHalf: function (raising) {
+            goHalf: function (raising, raisedSum) {
                 this.half(raising)
+                this.opponentTurn(raisedSum)
             },
             goBbing: function (raising) {
                 this.bbing(raising)
+                this.opponentTurn()
             },
             goDdadang: function (opponentRaising) {
                 this.ddadang(opponentRaising)
+                this.opponentTurn()
             },
             goAllIn: function(){
                 this.allIn()
                 this.opponentTurn()
             },
-            opponentTurn: function(){
-                console.log('a')
+            opponentTurn: function(need){
+                this.opponentHalf(need)
+                let waiting =  Math.floor(Math.random() * (10000 - 3000)) + 3000
+
+                let random = Math.floor(Math.random() * (5) + 1)
+
+                if(random === 1){
+
+                }
+                if(random === 2){
+
+                }
+                if(random === 3){
+
+                }
+                if(random === 4){
+
+                }
+                if(random === 5){
+
+                }
+
+                console.log(random)
             }
         },
         data () {
