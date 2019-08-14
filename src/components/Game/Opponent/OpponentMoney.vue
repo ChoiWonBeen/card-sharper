@@ -1,6 +1,11 @@
 <template>
-    <div class="opponent__money" v-if="(start==='yes')">
-        소지 금액 : {{ opponentMoney }}
+    <div v-if="(start==='yes')">
+        <div class="opponent__money">
+            소지 금액 : {{ opponentMoney }}
+        </div>
+        <div class="opponent__betting font-weight-black display-1">
+            {{ opponentBetting }}
+        </div>
     </div>
 </template>
 
@@ -9,7 +14,7 @@
     export default {
         name: "OpponentMoney",
         computed: {
-            ...mapGetters(['opponentMoney','start'])
+            ...mapGetters(['opponentMoney','start','opponentBetting'])
         }
     }
 </script>
@@ -17,5 +22,10 @@
 <style scoped>
     .opponent__money {
         margin-left: 300px;
+        float: left;
+    }
+    .opponent__betting{
+        float:right;
+        margin-right: 29%;
     }
 </style>

@@ -12,6 +12,8 @@ export default new Vuex.Store({
     userRaised:0,
     opponentRaised:0,
     deck:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+    opponentBetting:null,
+    userBetting:null
   },
   getters: {
     userMoney: function (state) {
@@ -43,6 +45,12 @@ export default new Vuex.Store({
     },
     opponentHand2: function (state) {
       return state.deck[3]
+    },
+    opponentBetting: function(state){
+      return state.opponentBetting
+    },
+    userBetting: function(state){
+      return state.userBetting
     },
     battleResult: function (state, getters) {
       let users = [getters.userHand1, getters.userHand2]
@@ -158,7 +166,13 @@ export default new Vuex.Store({
         state.deck[i - 1] = state.deck[j];
         state.deck[j] = x;
       }
-    }
+    },
+    betOpponent:function (state, betting) {
+      state.opponentBetting = betting
+    },
+    betUser:function (state, betting) {
+      state.userBetting = betting
+    },
   },
   actions: {
 

@@ -87,9 +87,10 @@
         },
         methods: {
             ...mapMutations(['called','half','bbing','ddadang','allIn','opponentCall','opponentHalf'
-                            ,'opponentDdadang','opponentAllIn','opponentDie']),
+                            ,'opponentDdadang','opponentAllIn','opponentDie','betOpponent','betUser']),
             goCall: function (opponentRaising, userRaising, sumRaising, startCallback, battleResult) {
                 this.called(opponentRaising)
+                this.betUser('콜!')
                 if(opponentRaising === userRaising){ alert(battleResult[0]) }
                 else {
                     this._promise(true)
@@ -100,6 +101,7 @@
             },
             goHalf: function (opponentRaising, userRaising, sumRaising, startCallback, battleResult) {
                 this.half(sumRaising)
+                this.betUser('하프!')
                 this._promise(true)
                     .then(function () {
                         startCallback(opponentRaising, userRaising+sumRaising/2, sumRaising+sumRaising/2, battleResult)
@@ -107,6 +109,7 @@
             },
             goBbing: function (opponentRaising, userRaising, sumRaising, startCallback, battleResult) {
                 this.bbing(100)
+                this.betUser('삥!')
                 this._promise(true)
                     .then(function () {
                         startCallback(opponentRaising, userRaising+100, sumRaising+100, battleResult)
@@ -114,6 +117,7 @@
             },
             goDdadang: function (opponentRaising, userRaising, sumRaising, startCallback, battleResult) {
                 this.ddadang(opponentRaising)
+                this.betUser('따당!')
                 this._promise(true)
                     .then(function () {
                         startCallback(opponentRaising, opponentRaising*2, (sumRaising-userRaising+opponentRaising)*2, battleResult)
@@ -121,6 +125,7 @@
             },
             goAllIn: function(opponentRaising, userRaising, sumRaising, userMoney, startCallback, battleResult){
                 this.allIn()
+                this.betUser('올인!')
                 this._promise(true)
                     .then(function () {
                         startCallback(opponentRaising, userRaising+userMoney, sumRaising+userMoney, battleResult)
@@ -146,22 +151,22 @@
                     else {
                         this.opponentCall(userRaising)
                     }
-                    console.log('콜')
+                    this.betOpponent('콜!')
                 }
                 if( 5<= random && random <=6){
                     this.opponentHalf(sumRaising)
-                    console.log('하프')
+                    this.betOpponent('하프!')
                 }
                 if(random === 7){
                     this.opponentDdadang(userRaising)
-                    console.log('따당')
+                    this.betOpponent('따당!')
                 }
                 if(random === 8){
                     this.opponentAllIn()
-                    console.log('올인')
+                    this.betOpponent('올인!')
                 }
                 if(9<= random && random <=10){
-                    alert('상대가 다이를 쳤어요')
+                    this.betOpponent('다이..')
                 }
             },
         },

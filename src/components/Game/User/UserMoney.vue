@@ -1,6 +1,11 @@
 <template>
-    <div class="user__money" v-if="(start==='yes')">
-        소지 금액 : {{ userMoney }}
+    <div v-if="(start==='yes')">
+        <div class="user__money">
+            소지 금액 : {{ userMoney }}
+        </div>
+        <div class="user__betting font-weight-black display-1">
+            {{ userBetting }}
+        </div>
     </div>
 </template>
 
@@ -9,7 +14,7 @@
     export default {
         name: "UserMoney",
         computed: {
-            ...mapGetters(['userMoney','start'])
+            ...mapGetters(['userMoney','start','userBetting'])
         }
     }
 </script>
@@ -18,5 +23,10 @@
     .user__money {
         text-align: right;
         margin-right: 300px;
+        float: right;
+    }
+    .user__betting {
+        float: left;
+        margin-left: 25%;
     }
 </style>
