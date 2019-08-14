@@ -26,9 +26,10 @@
             ...mapGetters(['start'])
         },
         methods: {
-            ...mapMutations(['clickStart']),
+            ...mapMutations(['clickStart','shuffle']),
             startButton : function () {
                 this.clickStart('yes')
+                this.shuffle()
             }
         }
     }

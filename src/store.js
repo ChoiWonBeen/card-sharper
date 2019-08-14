@@ -11,30 +11,39 @@ export default new Vuex.Store({
     raisedSum:0,
     userRaised:0,
     opponentRaised:0,
-    userHand1:0,
-    userHand2:0,
-    opponentHand1:0,
-    opponentHand2:0,
+    deck:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
   },
   getters: {
     userMoney: function (state) {
-      return state.userMoney
+      return Math.round(state.userMoney)
     },
     opponentMoney: function (state) {
-      return state.opponentMoney
+      return Math.round(state.opponentMoney)
     },
     raisedSum: function (state) {
-      return state.userRaised + state.opponentRaised
+      return Math.round(state.userRaised + state.opponentRaised)
     },
     userRaised: function (state) {
-      return state.userRaised
+      return Math.round(state.userRaised)
     },
     opponentRaised: function (state) {
-      return state.opponentRaised
+      return Math.round(state.opponentRaised)
     },
     start:function (state) {
       return state.start
-    }
+    },
+    userHand1: function (state) {
+      return state.deck[0]
+    },
+    userHand2: function (state) {
+      return state.deck[1]
+    },
+    opponentHand1: function (state) {
+      return state.deck[2]
+    },
+    opponentHand2: function (state) {
+      return state.deck[3]
+    },
   },
   mutations: {
     clickStart: function (state, yes) {
@@ -85,6 +94,15 @@ export default new Vuex.Store({
       state.opponentRaised += state.opponentMoney
       state.opponentMoney = 0
     },
+    shuffle: function (state) {
+      let j, x, i;
+      for (i = state.deck.length; i; i -= 1) {
+        j = Math.floor(Math.random() * i);
+        x = state.deck[i - 1];
+        state.deck[i - 1] = state.deck[j];
+        state.deck[j] = x;
+      }
+    }
   },
   actions: {
 

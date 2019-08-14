@@ -1,7 +1,13 @@
 <template>
     <div class="user__field" v-if="(start==='yes')">
-        <img src="@/assets/CardImage/3.gif" alt="" class="card">
-        <img src="@/assets/CardImage/8.gif" alt="" class="card">
+        <v-img
+                max-width="46"
+                max-height="72"
+                :src="getCard(userHand1)" alt="" class="card"></v-img>
+        <v-img
+                max-width="46"
+                max-height="72"
+                :src="getCard(userHand2)" alt="" class="card"></v-img>
     </div>
 </template>
 
@@ -9,14 +15,29 @@
     import {mapGetters} from 'vuex'
     export default {
         name: "UserField",
+        data : function () {
+            return {
+                linkHead: './static/',
+                linkTail: '.gif'
+            }
+        },
         computed: {
-            ...mapGetters(['start'])
+            ...mapGetters(['start','userHand1','userHand2'])
+        },
+        methods: {
+            clickIt: function (input) {
+                alert(input)
+            },
+            getCard(cardNum) {
+                return require('./static/' + cardNum + '.gif')
+            },
         }
     }
 </script>
 
 <style scoped>
     .user__field {
-        text-align: center;
+        justify-content: center;
+        display: flex;
     }
 </style>

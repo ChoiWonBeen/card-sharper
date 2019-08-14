@@ -138,28 +138,28 @@
                 });
             },
             startCallback : function (opponentRaising, userRaising, sumRaising) {
-                let random = Math.floor(Math.random() * (5) + 1)
+                let random = Math.floor(Math.random() * (10) + 1)
 
-                if(random === 1){
+                if( 1 <= random && random <= 4){
                     if(opponentRaising===userRaising){alert('콜났어요')}
                     else {
                         this.opponentCall(userRaising)
                     }
                     console.log('콜')
                 }
-                if(random === 2){
+                if( 5<= random && random <=6){
                     this.opponentHalf(sumRaising)
                     console.log('하프')
                 }
-                if(random === 3){
+                if(random === 7){
                     this.opponentDdadang(userRaising)
                     console.log('따당')
                 }
-                if(random === 4){
+                if(random === 8){
                     this.opponentAllIn()
                     console.log('올인')
                 }
-                if(random === 5){
+                if(9<= random && random <=10){
                     alert('상대가 다이를 쳤어요')
                 }
             },
