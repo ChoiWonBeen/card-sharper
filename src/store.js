@@ -44,6 +44,62 @@ export default new Vuex.Store({
     opponentHand2: function (state) {
       return state.deck[3]
     },
+    battleResult: function (state, getters) {
+      let users = [getters.userHand1, getters.userHand2]
+      let opponents = [getters.opponentHand1, getters.opponentHand2]
+      let jokbo = function (cardSet) {
+        let cards = cardSet.sort(function(left, right) { return left-right })
+        if(cards[0]===3 && cards[1]===8){
+          return [102,'38광땡']
+        }
+        else if(cards[0]===1 && cards[1]===8|| cards[0]===1 && cards[1]===3){
+          return [101,'13광땡']
+        }
+        else if(cards[1]-cards[0] === 10){
+          return [90+cards[0],cards[0]+'땡']
+        }
+        else if(cards[0]===1 && cards[1]===2 || cards[0]===2 && cards[1]===11 ||
+                cards[0]===11 && cards[1]===12 || cards[0]===1 && cards[1]===12){
+          return [90,'알리']
+        }
+        else if(cards[0]===1 && cards[1]===4 || cards[0]===4 && cards[1]===11 ||
+                cards[0]===11 && cards[1]===14 || cards[0]===1 && cards[1]===14){
+          return [89,'독사']
+        }
+        else if(cards[0]===1 && cards[1]===9 || cards[0]===9 && cards[1]===11 ||
+                cards[0]===11 && cards[1]===19 || cards[0]===1 && cards[1]===19){
+          return [88,'구삥']
+        }
+        else if(cards[0]===1 && cards[1]===10 || cards[0]===10 && cards[1]===11 ||
+                cards[0]===11 && cards[1]===20 || cards[0]===1 && cards[1]===20){
+          return [87,'장삥']
+        }
+        else if(cards[0]===4 && cards[1]===10 || cards[0]===10 && cards[1]===14 ||
+                cards[0]===14 && cards[1]===20 || cards[0]===4 && cards[1]===20){
+          return [86,'장사']
+        }
+        else if(cards[0]===4 && cards[1]===6 || cards[0]===6 && cards[1]===14 ||
+                cards[0]===14 && cards[1]===16 || cards[0]===4 && cards[1]===16){
+          return [85,'세륙']
+        }
+        else{
+          return [(cards[0]+cards[1])%10,(cards[0]+cards[1])%10+'끗']
+        }
+      }
+
+      let userResult = jokbo(users)
+      let opponentResult = jokbo(opponents)
+
+      if (userResult[0]>opponentResult[0]){
+        return [userResult[1]+'(으)로 이겼습니다', userResult[1], opponentResult[1]]
+      }
+      else if (userResult[0]<opponentResult[0]){
+        return [opponentResult[1]+'한테 졌습니다!', userResult[1], opponentResult[1]]
+      }
+      else{
+        return [userResult[1]+'(으)로 무승부입니다.', userResult[1], opponentResult[1]]
+      }
+    }
   },
   mutations: {
     clickStart: function (state, yes) {

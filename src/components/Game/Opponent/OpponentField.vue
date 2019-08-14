@@ -11,7 +11,7 @@
     export default {
         name: "OpponentField",
         computed: {
-            ...mapGetters(['start'])
+            ...mapGetters(['start','opponentHand1','opponentHand2'])
         }
     }
 </script>
