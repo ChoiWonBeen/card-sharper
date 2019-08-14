@@ -141,7 +141,10 @@
                 let random = Math.floor(Math.random() * (5) + 1)
 
                 if(random === 1){
-                    this.opponentCall(userRaising)
+                    if(opponentRaising===userRaising){alert('콜났어요')}
+                    else {
+                        this.opponentCall(userRaising)
+                    }
                     console.log('콜')
                 }
                 if(random === 2){

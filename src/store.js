@@ -11,7 +11,10 @@ export default new Vuex.Store({
     raisedSum:0,
     userRaised:0,
     opponentRaised:0,
-
+    userHand1:0,
+    userHand2:0,
+    opponentHand1:0,
+    opponentHand2:0,
   },
   getters: {
     userMoney: function (state) {
