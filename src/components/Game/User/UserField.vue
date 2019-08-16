@@ -1,5 +1,5 @@
 <template>
-    <div class="text-center d-flex align-center user__field" v-if="(start==='yes')">
+    <div class="text-center d-flex align-center user__field" v-if="(start==='yes' || start==='open')">
         <v-tooltip top>
             <template v-slot:activator="{ on }">
                     <v-img  v-on="on"
@@ -30,9 +30,6 @@
             ...mapGetters(['start','userHand1','userHand2','battleResult'])
         },
         methods: {
-            clickIt: function (input) {
-                alert(input)
-            },
             getCard(cardNum) {
                 return require('./static/' + cardNum + '.gif')
             },

@@ -53,7 +53,7 @@
                                 </v-list-item>
 
                                 <v-list-item>
-                                    <v-list-item-content>
+                                    <v-list-item-content @click="goDie(raisedSum)">
                                         <v-list-item-title>다이</v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
@@ -87,11 +87,12 @@
         },
         methods: {
             ...mapMutations(['called','half','bbing','ddadang','allIn','opponentCall','opponentHalf'
-                            ,'opponentDdadang','opponentAllIn','opponentDie','betOpponent','betUser']),
+                            ,'opponentDdadang','opponentAllIn','opponentDie','betOpponent','betUser'
+                            ,'youWin','youLose','youDraw', 'openCards']),
             goCall: function (opponentRaising, userRaising, sumRaising, startCallback, battleResult) {
                 this.called(opponentRaising)
                 this.betUser('콜!')
-                if(opponentRaising === userRaising){ alert(battleResult[0]) }
+                if(opponentRaising === userRaising){ this.endSet(battleResult, sumRaising) }
                 else {
                     this._promise(true)
                         .then(function () {
@@ -131,6 +132,10 @@
                         startCallback(opponentRaising, userRaising+userMoney, sumRaising+userMoney, battleResult)
                     })
             },
+            goDie: function(sumRaising){
+                this.openCards()
+                this.youLose(sumRaising)
+            },
             _promise : function (param) {
                 return new Promise(function (resolve, reject) {
                     window.setTimeout(function () {
@@ -147,7 +152,7 @@
                 let random = Math.floor(Math.random() * (10) + 1)
 
                 if( 1 <= random && random <= 4){
-                    if(opponentRaising===userRaising){alert(battleResult[0])}
+                    if(opponentRaising===userRaising){this.endSet(battleResult, sumRaising)}
                     else {
                         this.opponentCall(userRaising)
                     }
@@ -167,8 +172,21 @@
                 }
                 if(9<= random && random <=10){
                     this.betOpponent('다이..')
+                    this.youWin(sumRaising)
                 }
             },
+            endSet: function (battleResult, sumRaising) {
+                this.openCards()
+                if(battleResult[3]===1){
+                    this.youWin(sumRaising)
+                }
+                else if(battleResult[3]===2){
+                    this.youLose(sumRaising)
+                }
+                else if(battleResult[3]===3){
+
+                }
+            }
         },
         data () {
             return {

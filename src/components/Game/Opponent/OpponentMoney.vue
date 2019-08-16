@@ -1,6 +1,6 @@
 <template>
-    <div v-if="(start==='yes')">
-        <div class="opponent__money">
+    <div v-if="(start==='yes' || start==='open')">
+        <div class="opponent__money title">
             소지 금액 : {{ opponentMoney }}
         </div>
         <div class="opponent__betting font-weight-black display-1">

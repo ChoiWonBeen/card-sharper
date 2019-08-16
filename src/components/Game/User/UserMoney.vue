@@ -1,6 +1,6 @@
 <template>
-    <div v-if="(start==='yes')">
-        <div class="user__money">
+    <div>
+        <div class="user__money title">
             소지 금액 : {{ userMoney }}
         </div>
         <div class="user__betting font-weight-black display-1">

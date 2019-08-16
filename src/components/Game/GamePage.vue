@@ -3,14 +3,15 @@
         <right-pedigree></right-pedigree>
         <left-pedigree></left-pedigree>
 
-            <opponent-field></opponent-field>
-            <opponent-money></opponent-money>
+        <opponent-field></opponent-field>
+        <opponent-money></opponent-money>
         
-            <before-betting v-if="(start === 'no')"></before-betting>
-            <betting v-if="(start === 'yes')"></betting>
+        <before-betting v-if="(start === 'no')"></before-betting>
+        <betting v-if="(start === 'yes')"></betting>
+        <after-betting v-if="(start==='open')"></after-betting>
 
-            <user-money></user-money>
-            <user-field></user-field>
+        <user-money></user-money>
+        <user-field></user-field>
 
         <fnb></fnb>
     </v-app>
@@ -28,6 +29,7 @@
     import leftPedigree from "./pedigree/leftPedigree"
     import rightPedigree from "./pedigree/rightPedigree"
     import beforeBetting from "./Betting/beforeBetting"
+    import afterBetting from "./Betting/afterBetting"
 
     export default {
         props: {
@@ -42,7 +44,8 @@
             'user-money':UserMoney,
             'left-pedigree':leftPedigree,
             'right-pedigree':rightPedigree,
-            'before-betting':beforeBetting
+            'before-betting':beforeBetting,
+            'after-betting':afterBetting
         },
         computed: {
             ...mapGetters(['start'])

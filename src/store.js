@@ -99,13 +99,13 @@ export default new Vuex.Store({
       let opponentResult = jokbo(opponents)
 
       if (userResult[0]>opponentResult[0]){
-        return [userResult[1]+'(으)로 이겼습니다', userResult[1], opponentResult[1]]
+        return [userResult[1]+'(으)로 이겼습니다', userResult[1], opponentResult[1],1]
       }
       else if (userResult[0]<opponentResult[0]){
-        return [opponentResult[1]+'한테 졌습니다!', userResult[1], opponentResult[1]]
+        return [opponentResult[1]+'한테 졌습니다!', userResult[1], opponentResult[1],2]
       }
       else{
-        return [userResult[1]+'(으)로 무승부입니다.', userResult[1], opponentResult[1]]
+        return [userResult[1]+'(으)로 무승부입니다.', userResult[1], opponentResult[1],3]
       }
     }
   },
@@ -117,7 +117,6 @@ export default new Vuex.Store({
       state.userRaised += 100
       state.opponentRaised += 100
     },
-
     called: function (state, opponentRaising) {
       state.userMoney += state.userRaised
       state.userRaised = opponentRaising
@@ -167,12 +166,27 @@ export default new Vuex.Store({
         state.deck[j] = x;
       }
     },
-    betOpponent:function (state, betting) {
+    betOpponent: function (state, betting) {
       state.opponentBetting = betting
     },
-    betUser:function (state, betting) {
+    betUser: function (state, betting) {
       state.userBetting = betting
     },
+    youWin: function (state, sumRaising) {
+      state.userMoney += sumRaising -100
+      state.opponentMoney -= 100
+      state.userRaised = 100
+      state.opponentRaised = 100
+    },
+    youLose: function (state, sumRaising) {
+      state.userMoney -= 100
+      state.opponentMoney += sumRaising -100
+      state.userRaised = 100
+      state.opponentRaised = 100
+    },
+    openCards: function (state) {
+      state.start = 'open'
+    }
   },
   actions: {
 
