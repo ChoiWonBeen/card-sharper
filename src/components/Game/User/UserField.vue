@@ -9,6 +9,7 @@
                     <v-img v-on="on"
                             max-width="46"
                             max-height="72"
+                           @click="checkIt(userHand2)"
                             :src="getCard(userHand2)" alt="" class="card"></v-img>
             </template>
             <span>{{battleResult[1]}}</span>
@@ -33,6 +34,9 @@
             getCard(cardNum) {
                 return require('./static/' + cardNum + '.gif')
             },
+            checkIt(input){
+                alert(input)
+            }
         }
     }
 </script>

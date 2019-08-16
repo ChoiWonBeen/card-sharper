@@ -16,7 +16,7 @@
                            max-height="72"
                            :src="getCard(opponentHand2)" alt="" class="card"></v-img>
                 </template>
-                <span>{{battleResult[2]}}</span>
+                <span>{{ battleResult[2] }}</span>
             </v-tooltip>
         </div>
     </div>
