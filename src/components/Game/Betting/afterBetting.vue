@@ -10,7 +10,48 @@
                     class="board__money"
             >
 
-                ㅇ아ㅏ아
+                <template>
+                    <v-card
+                            class="mx-auto my-12"
+                            max-width="374"
+                    >
+
+                        <v-card-title>승리!</v-card-title>
+                        <v-card-text>
+                            <div>{{ battleResult[1] }} vs {{ battleResult[2] }} 로 당신이 이겼습니다.</div>
+
+                            <div class="my-4 subtitle-1 black--text">
+                                $ • {{raisedSum}}원을 획득했습니다! (순이익:{{ opponentRaised }})
+                            </div>
+                        </v-card-text>
+
+                        <v-divider class="mx-4"></v-divider>
+
+                        <v-card-text>
+                            <div class="title text--primary">판돈을 정하세요!</div>
+                            <v-chip-group
+                                    v-model="selection"
+                                    active-class="deep-purple accent-4 white--text"
+                                    column
+                            >
+                                <v-chip>100</v-chip>
+                                <v-chip>200</v-chip>
+                                <v-chip>500</v-chip>
+                                <v-chip>1000</v-chip>
+                            </v-chip-group>
+                        </v-card-text>
+
+                        <v-card-actions>
+                            <v-btn
+                                    color="deep-purple accent-4"
+                                    text
+                                    @click="ReStart(selection)"
+                            >
+                                시작!
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </template>
 
             </v-layout>
         </v-container>
@@ -18,8 +59,41 @@
 </template>
 
 <script>
+    import {mapGetters, mapMutations} from 'vuex'
+
     export default {
-        name: "afterBetting"
+        name: "afterBetting",
+        data : function () {
+            return {
+                selection: {
+                    default:100,
+                    type: Number
+                }
+            }
+        },
+        methods: {
+            ...mapMutations(['shuffle','clickStart']),
+            ReStart: function (selection) {
+                let raising
+                if(selection=== 0){
+                    raising = 100
+                }
+                else if(selection=== 1){
+                    raising = 200
+                }
+                else if(selection=== 2){
+                    raising = 500
+                }
+                else if(selection=== 3){
+                    raising = 1000
+                }
+                this.clickStart(['yes',raising])
+                this.shuffle()
+            }
+        },
+        computed: {
+            ...mapGetters(['raisedSum','opponentRaised','userRaised','battleResult'])
+        }
     }
 </script>
 

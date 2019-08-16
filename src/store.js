@@ -111,11 +111,13 @@ export default new Vuex.Store({
   },
   mutations: {
     clickStart: function (state, yes) {
-      state.start = yes
-      state.userMoney -= 100
-      state.opponentMoney -= 100
-      state.userRaised += 100
-      state.opponentRaised += 100
+      state.start = yes[0]
+      state.userMoney -= yes[1]
+      state.opponentMoney -= yes[1]
+      state.userRaised = yes[1]
+      state.opponentRaised = yes[1]
+      state.userBetting = null
+      state.opponentBetting = null
     },
     called: function (state, opponentRaising) {
       state.userMoney += state.userRaised
@@ -135,10 +137,6 @@ export default new Vuex.Store({
       state.userRaised = opponentRaising * 2
       state.userMoney -= state.userRaised
     },
-    allIn: function (state) {
-      state.userRaised += state.userMoney
-      state.userMoney = 0
-    },
     opponentCall: function (state, userRaising) {
       state.opponentMoney += state.opponentRaised
       state.opponentRaised = userRaising
@@ -152,10 +150,6 @@ export default new Vuex.Store({
       state.opponentMoney += state.opponentRaised
       state.opponentRaised = userRaising * 2
       state.opponentMoney -= state.opponentRaised
-    },
-    opponentAllIn: function (state) {
-      state.opponentRaised += state.opponentMoney
-      state.opponentMoney = 0
     },
     shuffle: function (state) {
       let j, x, i;
@@ -173,16 +167,10 @@ export default new Vuex.Store({
       state.userBetting = betting
     },
     youWin: function (state, sumRaising) {
-      state.userMoney += sumRaising -100
-      state.opponentMoney -= 100
-      state.userRaised = 100
-      state.opponentRaised = 100
+      state.userMoney += sumRaising
     },
     youLose: function (state, sumRaising) {
-      state.userMoney -= 100
-      state.opponentMoney += sumRaising -100
-      state.userRaised = 100
-      state.opponentRaised = 100
+      state.opponentMoney += sumRaising
     },
     openCards: function (state) {
       state.start = 'open'

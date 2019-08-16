@@ -9,7 +9,7 @@
                     align-center
                     class="board__money"
             >
-                <v-btn class="ma-2" tile color="error" dark>{{ opponentRaised }}</v-btn>
+                <v-btn class="ma-2" tile color="error" dark @click="shuffling">{{ opponentRaised }}</v-btn>
             </v-layout>
 
             <v-layout
@@ -47,12 +47,6 @@
                                 </v-list-item>
 
                                 <v-list-item>
-                                    <v-list-item-content @click="goAllIn(opponentRaised, userRaised, raisedSum, userMoney, startCallback, battleResult)">
-                                        <v-list-item-title>올인</v-list-item-title>
-                                    </v-list-item-content>
-                                </v-list-item>
-
-                                <v-list-item>
                                     <v-list-item-content @click="goDie(raisedSum)">
                                         <v-list-item-title>다이</v-list-item-title>
                                     </v-list-item-content>
@@ -86,9 +80,9 @@
                 'userHand1','userHand2','opponentHand1','opponentHand2','battleResult'])
         },
         methods: {
-            ...mapMutations(['called','half','bbing','ddadang','allIn','opponentCall','opponentHalf'
-                            ,'opponentDdadang','opponentAllIn','opponentDie','betOpponent','betUser'
-                            ,'youWin','youLose','youDraw', 'openCards']),
+            ...mapMutations(['called','half','bbing','ddadang','opponentCall','opponentHalf'
+                            ,'opponentDdadang','opponentDie','betOpponent','betUser'
+                            ,'youWin','youLose','youDraw', 'openCards','shuffle']),
             goCall: function (opponentRaising, userRaising, sumRaising, startCallback, battleResult) {
                 this.called(opponentRaising)
                 this.betUser('콜!')
@@ -124,14 +118,6 @@
                         startCallback(opponentRaising, opponentRaising*2, (sumRaising-userRaising+opponentRaising)*2, battleResult)
                     })
             },
-            goAllIn: function(opponentRaising, userRaising, sumRaising, userMoney, startCallback, battleResult){
-                this.allIn()
-                this.betUser('올인!')
-                this._promise(true)
-                    .then(function () {
-                        startCallback(opponentRaising, userRaising+userMoney, sumRaising+userMoney, battleResult)
-                    })
-            },
             goDie: function(sumRaising){
                 this.openCards()
                 this.youLose(sumRaising)
@@ -149,7 +135,7 @@
                 });
             },
             startCallback : function (opponentRaising, userRaising, sumRaising, battleResult) {
-                let random = Math.floor(Math.random() * (10) + 1)
+                let random = Math.floor(Math.random() * (9) + 1)
 
                 if( 1 <= random && random <= 4){
                     if(opponentRaising===userRaising){this.endSet(battleResult, sumRaising)}
@@ -166,12 +152,9 @@
                     this.opponentDdadang(userRaising)
                     this.betOpponent('따당!')
                 }
-                if(random === 8){
-                    this.opponentAllIn()
-                    this.betOpponent('올인!')
-                }
-                if(9<= random && random <=10){
+                if(8<= random && random <=9){
                     this.betOpponent('다이..')
+                    this.openCards()
                     this.youWin(sumRaising)
                 }
             },
@@ -186,6 +169,9 @@
                 else if(battleResult[3]===3){
 
                 }
+            },
+            shuffling: function () {
+                this.shuffle(Math.random()  )
             }
         },
         data () {

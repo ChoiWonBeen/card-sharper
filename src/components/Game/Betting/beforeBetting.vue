@@ -32,7 +32,7 @@
         methods: {
             ...mapMutations(['clickStart','shuffle']),
             startButton : function () {
-                this.clickStart('yes')
+                this.clickStart(['yes', 100])
                 this.shuffle()
             }
         }

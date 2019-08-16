@@ -27,7 +27,7 @@
             }
         },
         computed: {
-            ...mapGetters(['start','userHand1','userHand2','battleResult'])
+            ...mapGetters(['start','userHand1','userHand2','battleResult','deck'])
         },
         methods: {
             getCard(cardNum) {
