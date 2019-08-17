@@ -11,9 +11,12 @@ export default new Vuex.Store({
     raisedSum:0,
     userRaised:0,
     opponentRaised:0,
-    deck:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
     opponentBetting:null,
-    userBetting:null
+    userBetting:null,
+    userHand1:null,
+    userHand2:null,
+    opponentHand1:null,
+    opponentHand2:null
   },
   getters: {
     userMoney: function (state) {
@@ -35,16 +38,16 @@ export default new Vuex.Store({
       return state.start
     },
     userHand1: function (state) {
-      return state.deck[0]
+      return state.userHand1
     },
     userHand2: function (state) {
-      return state.deck[1]
+      return state.userHand2
     },
     opponentHand1: function (state) {
-      return state.deck[2]
+      return state.opponentHand1
     },
     opponentHand2: function (state) {
-      return state.deck[3]
+      return state.opponentHand2
     },
     opponentBetting: function(state){
       return state.opponentBetting
@@ -153,12 +156,17 @@ export default new Vuex.Store({
     },
     shuffle: function (state) {
       let j, x, i;
-      for (i = state.deck.length; i; i -= 1) {
+      let deck = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+      for (i = deck.length; i; i -= 1) {
         j = Math.floor(Math.random() * i);
-        x = state.deck[i - 1];
-        state.deck[i - 1] = state.deck[j];
-        state.deck[j] = x;
+        x = deck[i - 1];
+        deck[i - 1] = deck[j];
+        deck[j] = x;
       }
+      state.userHand1 = deck[0]
+      state.userHand2 = deck[1]
+      state.opponentHand1 = deck[2]
+      state.opponentHand2 = deck[3]
     },
     betOpponent: function (state, betting) {
       state.opponentBetting = betting

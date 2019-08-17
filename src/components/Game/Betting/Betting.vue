@@ -9,7 +9,7 @@
                     align-center
                     class="board__money"
             >
-                <v-btn class="ma-2" tile color="error" dark @click="shuffling">{{ opponentRaised }}</v-btn>
+                <v-btn class="ma-2" tile color="error" dark>{{ opponentRaised }}</v-btn>
             </v-layout>
 
             <v-layout
@@ -170,9 +170,6 @@
 
                 }
             },
-            shuffling: function () {
-                this.shuffle(Math.random()  )
-            }
         },
         data () {
             return {
