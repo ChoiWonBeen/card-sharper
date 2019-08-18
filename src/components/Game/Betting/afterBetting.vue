@@ -76,7 +76,7 @@
                             <v-btn
                                     color="deep-purple accent-4"
                                     text
-                                    @click="ReStart(raisedSum)"
+                                    @click="ReMatch(raisedSum)"
                                     v-if="(battleResult[3]===3)"
                             >
                                 재경기!
@@ -104,7 +104,7 @@
             }
         },
         methods: {
-            ...mapMutations(['shuffle','clickStart']),
+            ...mapMutations(['shuffle','clickStart','clickReStart']),
             ReStart: function (selection) {
                 let raising
                 if(selection=== 0){
@@ -119,10 +119,11 @@
                 else if(selection=== 3){
                     raising = 1000
                 }
-                else{
-                    raising = selection
-                }
                 this.clickStart(['yes',raising])
+                this.shuffle()
+            },
+            ReMatch: function (raisingSum) {
+                this.clickReStart(['yes',raisingSum])
                 this.shuffle()
             }
         },

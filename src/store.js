@@ -122,6 +122,15 @@ export default new Vuex.Store({
       state.userBetting = null
       state.opponentBetting = null
     },
+    clickReStart: function(state, yes) {
+      state.start = yes[0]
+      state.userRaised = yes[1]
+      state.opponentRaised = yes[1]
+      state.userMoney -= yes[1]/2
+      state.opponentMoney -= yes[1]/2
+      state.userBetting = null
+      state.opponentBetting = null
+    },
     called: function (state, opponentRaising) {
       state.userMoney += state.userRaised
       state.userRaised = opponentRaising
