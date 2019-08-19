@@ -6,8 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     start:'no',
-    userMoney: 10000,
-    opponentMoney: 10000,
+    userMoney: 100000,
+    opponentMoney: 100000,
     raisedSum:0,
     userRaised:0,
     opponentRaised:0,
@@ -92,6 +92,17 @@ export default new Vuex.Store({
         else if(cards[0]===4 && cards[1]===6 || cards[0]===6 && cards[1]===14 ||
                 cards[0]===14 && cards[1]===16 || cards[0]===4 && cards[1]===16){
           return [85,'세륙']
+        }
+        else if(cards[0]===3 && cards[1]===7 || cards[0]===7 && cards[1]===13 ||
+                cards[0]===13 && cards[1]===17 || cards[0]===3 && cards[1]===17 ){
+          return [50,'땡잡이']
+        }
+        else if(cards[0]===3 && cards[1]===7){
+          return [45,'멍텅구리 구사']
+        }
+        else if(cards[0]===4 && cards[1]===19 || cards[0]===9 && cards[1]===14 ||
+            cards[0]===14 && cards[1]===19 ){
+          return [40,'구사']
         }
         else{
           return [(cards[0]+cards[1])%10,(cards[0]+cards[1])%10+'끗']
