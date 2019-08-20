@@ -174,15 +174,15 @@
                     }
                     this.betOpponent('콜!')
                 }
-                if( 5<= random && random <=6){
+                if( 5 <= random && random <= 7){
                     this.opponentHalf(sumRaising)
                     this.betOpponent('하프!')
                 }
-                if(random === 7){
+                if( random === 8 ){
                     this.opponentDdadang(userRaising)
                     this.betOpponent('따당!')
                 }
-                if(8<= random && random <=9){
+                if( random === 9 ){
                     this.betOpponent('다이..')
                     this.opponentDie()
                     this.youWin(sumRaising)

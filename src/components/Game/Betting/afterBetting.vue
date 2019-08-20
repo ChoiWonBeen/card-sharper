@@ -205,6 +205,9 @@
                 else if(selection=== 3){
                     raising = 1000
                 }
+                else{
+                    raising = 100
+                }
                 this.clickStart(['yes',raising])
                 this.shuffle()
             },
