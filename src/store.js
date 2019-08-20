@@ -108,6 +108,12 @@ export default new Vuex.Store({
         else if(cards[0]===4 && cards[1]===7){
           return [1,'암행어사']
         }
+        else if((cards[0]+cards[1])%10 === 9){
+          return [9, '갑오']
+        }
+        else if((cards[0]+cards[1])%10 === 0){
+          return [0, '망통']
+        }
         else{
           return [(cards[0]+cards[1])%10,(cards[0]+cards[1])%10+'끗']
         }
