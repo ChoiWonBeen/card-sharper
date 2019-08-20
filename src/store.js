@@ -65,7 +65,7 @@ export default new Vuex.Store({
           return [102,'38광땡']
         }
         else if(cards[0]===1 && cards[1]===8|| cards[0]===1 && cards[1]===3){
-          return [101,'13광땡']
+          return [101,'광땡']
         }
         else if(cards[1]-cards[0] === 10){
           return [90+cards[0],cards[0]+'땡']
@@ -105,6 +105,9 @@ export default new Vuex.Store({
             cards[0]===14 && cards[1]===19 ){
           return [1,'구사']
         }
+        else if(cards[0]===4 && cards[1]===7){
+          return [1,'암행어사']
+        }
         else{
           return [(cards[0]+cards[1])%10,(cards[0]+cards[1])%10+'끗']
         }
@@ -119,11 +122,19 @@ export default new Vuex.Store({
       else if(opponentResult[1] === '땡잡이' && 90<= userResult[0] && userResult >= 99){
         return ['땡잡혔다!',userResult[1], opponentResult[1],2]
       }
+
       else if((userResult[1]==='구사' && opponentResult[0] <= 100) || (opponentResult[1] === '구사' && userResult[0]<= 100) ){
         return ['구사 재경기!',userResult[1],opponentResult[1],3]
       }
       else if((userResult[1]==='멍텅구리 구사' && opponentResult[0] <= 101) || (opponentResult[1] === '멍텅구리 구사' && userResult[0]<= 101) ){
         return ['멍텅구리 구사 재경기!',userResult[1],opponentResult[1],3]
+      }
+
+      else if(userResult[1] === '암행어사' && opponentResult[0] === 101){
+        return ['암행어사 승리!',userResult[1], opponentResult[1],1]
+      }
+      else if(opponentResult[1] === '암행어사' && userResult[0] === 101){
+        return ['암행어사 당했다..',userResult[1], opponentResult[1],2]
       }
 
       else if (userResult[0]>opponentResult[0]){
@@ -139,7 +150,6 @@ export default new Vuex.Store({
     turn: function(state){
       return state.turn
     }
-
   },
   mutations: {
     clickStart: function (state, yes) {
