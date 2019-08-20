@@ -1,5 +1,5 @@
 <template>
-    <div v-if="(start==='yes' || start==='open')">
+    <div v-if="(start!=='no')">
         <div class="opponent__money title">
             소지 금액 : {{ opponentMoney }}
         </div>

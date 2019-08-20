@@ -1,5 +1,5 @@
 <template>
-    <div class="text-center d-flex align-center user__field" v-if="(start==='yes' || start==='open')">
+    <div class="text-center d-flex align-center user__field" v-if="(start!=='no')">
         <v-tooltip top>
             <template v-slot:activator="{ on }">
                     <v-img  v-on="on"

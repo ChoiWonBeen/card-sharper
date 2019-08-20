@@ -8,7 +8,7 @@
         
         <before-betting v-if="(start === 'no')"></before-betting>
         <betting v-if="(start === 'yes')"></betting>
-        <after-betting v-if="(start==='open')"></after-betting>
+        <after-betting v-if="(start==='open' || start==='userDie' || start==='opponentDie')"></after-betting>
 
         <user-money></user-money>
         <user-field></user-field>

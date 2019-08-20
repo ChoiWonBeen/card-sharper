@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="opponent__field" v-if="(start==='yes')">
+        <div class="opponent__field" v-if="(start==='yes' || start ==='opponentDie' || start==='userDie')">
             <img src="@/assets/CardImage/0.png" alt="뒷면" class="card">
             <img src="@/assets/CardImage/0.png" alt="뒷면" class="card">
         </div>

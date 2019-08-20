@@ -147,6 +147,7 @@ export default new Vuex.Store({
       state.opponentMoney -= yes[1]/2
       state.userBetting = null
       state.opponentBetting = null
+      state.turn = 0
     },
     called: function (state, opponentRaising) {
       state.userMoney += state.userRaised
@@ -211,6 +212,12 @@ export default new Vuex.Store({
     },
     nextTurn: function (state) {
       state.turn++
+    },
+    opponentDie: function (state) {
+      state.start = 'opponentDie'
+    },
+    userDie: function (state) {
+      state.start = 'userDie'
     }
   },
   actions: {

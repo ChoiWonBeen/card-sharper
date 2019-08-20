@@ -82,7 +82,8 @@
         methods: {
             ...mapMutations(['called','half','bbing','ddadang','opponentCall','opponentHalf'
                             ,'opponentDdadang','opponentDie','betOpponent','betUser'
-                            ,'youWin','youLose','youDraw', 'openCards','shuffle','nextTurn']),
+                            ,'youWin','youLose','youDraw', 'openCards','shuffle','nextTurn'
+                            ,'opponentDie','userDie']),
             goCall: function (opponentRaising, userRaising, sumRaising, startCallback, battleResult) {
                 this.called(opponentRaising)
                 this.betUser('콜!')
@@ -105,24 +106,25 @@
                     })
             },
             goBbing: function (opponentRaising, userRaising, sumRaising, startCallback, battleResult) {
-                this.bbing(100)
+                this.bbing(userRaising)
                 this.betUser('삥!')
                 this.nextTurn()
                 this._promise(true)
                     .then(function () {
-                        startCallback(opponentRaising, userRaising+100, sumRaising+100, battleResult)
+                        startCallback(opponentRaising, userRaising*2, sumRaising+userRaising, battleResult)
                     })
             },
             goDdadang: function (opponentRaising, userRaising, sumRaising, startCallback, battleResult) {
                 this.ddadang(opponentRaising)
                 this.betUser('따당!')
+                this.nextTurn()
                 this._promise(true)
                     .then(function () {
                         startCallback(opponentRaising, opponentRaising*2, (sumRaising-userRaising+opponentRaising)*2, battleResult)
                     })
             },
             goDie: function(sumRaising){
-                this.openCards()
+                this.userDie()
                 this.youLose(sumRaising)
             },
             _promise : function (param) {
@@ -157,7 +159,7 @@
                 }
                 if(8<= random && random <=9){
                     this.betOpponent('다이..')
-                    this.openCards()
+                    this.opponentDie()
                     this.youWin(sumRaising)
                 }
             },
