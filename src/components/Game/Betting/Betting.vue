@@ -23,33 +23,58 @@
                             <v-list-item-group color="primary">
 
                                 <v-list-item v-if="(turn)" >
-                                    <v-list-item-content @click="goCall(opponentRaised, userRaised, raisedSum, startCallback, battleResult)">
-                                        <v-list-item-title>콜</v-list-item-title>
-                                    </v-list-item-content>
+                                    <v-tooltip right>
+                                        <template v-slot:activator="{ on }">
+                                            <v-list-item-content v-on="on" @click="goCall(opponentRaised, userRaised, raisedSum, startCallback, battleResult)">
+                                                <v-list-item-title>콜</v-list-item-title>
+                                            </v-list-item-content>
+                                        </template>
+                                        <span>끝내기를 요청하며 <br>{{ opponentRaised - userRaised}}원을 베팅합니다.</span>
+                                    </v-tooltip>
                                 </v-list-item>
 
                                 <v-list-item>
-                                    <v-list-item-content @click="goHalf(opponentRaised, userRaised, raisedSum, startCallback, battleResult)">
-                                        <v-list-item-title>하프</v-list-item-title>
-                                    </v-list-item-content>
+                                    <v-tooltip right>
+                                        <template v-slot:activator="{ on }">
+                                            <v-list-item-content v-on="on" @click="goHalf(opponentRaised, userRaised, raisedSum, startCallback, battleResult)">
+                                                <v-list-item-title>하프</v-list-item-title>
+                                            </v-list-item-content>
+                                        </template>
+                                        <span>판돈의 절반인 <br>{{ raisedSum/2 }}원을 베팅합니다.</span>
+                                    </v-tooltip>
                                 </v-list-item>
 
                                 <v-list-item v-if="(turn === 0)">
-                                    <v-list-item-content @click="goBbing(opponentRaised, userRaised, raisedSum, startCallback, battleResult)">
-                                        <v-list-item-title>삥</v-list-item-title>
-                                    </v-list-item-content>
+                                    <v-tooltip right>
+                                        <template v-slot:activator="{ on }">
+                                            <v-list-item-content v-on="on" @click="goBbing(opponentRaised, userRaised, raisedSum, startCallback, battleResult)">
+                                                <v-list-item-title>삥</v-list-item-title>
+                                            </v-list-item-content>
+                                        </template>
+                                        <span>시작 베팅금인 <br>{{ userRaised }}원을 베팅합니다.</span>
+                                    </v-tooltip>
                                 </v-list-item>
 
                                 <v-list-item>
-                                    <v-list-item-content @click="goDdadang(opponentRaised, userRaised, raisedSum, startCallback, battleResult)">
-                                        <v-list-item-title>따당</v-list-item-title>
-                                    </v-list-item-content>
+                                    <v-tooltip right>
+                                        <template v-slot:activator="{ on }">
+                                            <v-list-item-content v-on="on" @click="goDdadang(opponentRaised, userRaised, raisedSum, startCallback, battleResult)">
+                                                <v-list-item-title>따당</v-list-item-title>
+                                            </v-list-item-content>
+                                        </template>
+                                        <span>상대 베팅금의 두 배인 <br>{{ opponentRaised*2 - userRaised }}원을 베팅합니다.</span>
+                                    </v-tooltip>
                                 </v-list-item>
 
                                 <v-list-item>
-                                    <v-list-item-content @click="goDie(raisedSum)">
-                                        <v-list-item-title>다이</v-list-item-title>
-                                    </v-list-item-content>
+                                    <v-tooltip right>
+                                        <template v-slot:activator="{ on }">
+                                            <v-list-item-content v-on="on" @click="goDie(raisedSum)">
+                                                <v-list-item-title>다이</v-list-item-title>
+                                            </v-list-item-content>
+                                        </template>
+                                        <span>베팅금을 잃고 게임을 포기합니다.</span>
+                                    </v-tooltip>
                                 </v-list-item>
 
                             </v-list-item-group>
