@@ -22,7 +22,7 @@
                             <v-subheader>전체 판돈 : {{ raisedSum }}</v-subheader>
                             <v-list-item-group color="primary">
 
-                                <v-list-item>
+                                <v-list-item v-if="(turn)" >
                                     <v-list-item-content @click="goCall(opponentRaised, userRaised, raisedSum, startCallback, battleResult)">
                                         <v-list-item-title>콜</v-list-item-title>
                                     </v-list-item-content>
@@ -34,7 +34,7 @@
                                     </v-list-item-content>
                                 </v-list-item>
 
-                                <v-list-item>
+                                <v-list-item v-if="(turn === 0)">
                                     <v-list-item-content @click="goBbing(opponentRaised, userRaised, raisedSum, startCallback, battleResult)">
                                         <v-list-item-title>삥</v-list-item-title>
                                     </v-list-item-content>
@@ -77,15 +77,16 @@
         name: "Betting",
         computed: {
             ...mapGetters(['userRaised','opponentRaised','raisedSum','userMoney',
-                'userHand1','userHand2','opponentHand1','opponentHand2','battleResult'])
+                'userHand1','userHand2','opponentHand1','opponentHand2','battleResult','turn'])
         },
         methods: {
             ...mapMutations(['called','half','bbing','ddadang','opponentCall','opponentHalf'
                             ,'opponentDdadang','opponentDie','betOpponent','betUser'
-                            ,'youWin','youLose','youDraw', 'openCards','shuffle']),
+                            ,'youWin','youLose','youDraw', 'openCards','shuffle','nextTurn']),
             goCall: function (opponentRaising, userRaising, sumRaising, startCallback, battleResult) {
                 this.called(opponentRaising)
                 this.betUser('콜!')
+                this.nextTurn()
                 if(opponentRaising === userRaising){ this.endSet(battleResult, sumRaising) }
                 else {
                     this._promise(true)
@@ -97,6 +98,7 @@
             goHalf: function (opponentRaising, userRaising, sumRaising, startCallback, battleResult) {
                 this.half(sumRaising)
                 this.betUser('하프!')
+                this.nextTurn()
                 this._promise(true)
                     .then(function () {
                         startCallback(opponentRaising, userRaising+sumRaising/2, sumRaising+sumRaising/2, battleResult)
@@ -105,6 +107,7 @@
             goBbing: function (opponentRaising, userRaising, sumRaising, startCallback, battleResult) {
                 this.bbing(100)
                 this.betUser('삥!')
+                this.nextTurn()
                 this._promise(true)
                     .then(function () {
                         startCallback(opponentRaising, userRaising+100, sumRaising+100, battleResult)

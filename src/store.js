@@ -16,7 +16,8 @@ export default new Vuex.Store({
     userHand1:null,
     userHand2:null,
     opponentHand1:null,
-    opponentHand2:null
+    opponentHand2:null,
+    turn:0,
   },
   getters: {
     userMoney: function (state) {
@@ -95,7 +96,7 @@ export default new Vuex.Store({
         }
         else if(cards[0]===3 && cards[1]===7 || cards[0]===7 && cards[1]===13 ||
                 cards[0]===13 && cards[1]===17 || cards[0]===3 && cards[1]===17 ){
-          return [50,'땡잡이']
+          return [0,'땡잡이']
         }
         else if(cards[0]===3 && cards[1]===7){
           return [45,'멍텅구리 구사']
@@ -121,7 +122,11 @@ export default new Vuex.Store({
       else{
         return [userResult[1]+'(으)로 무승부입니다.', userResult[1], opponentResult[1],3]
       }
+    },
+    turn: function(state){
+      return state.turn
     }
+
   },
   mutations: {
     clickStart: function (state, yes) {
@@ -132,6 +137,7 @@ export default new Vuex.Store({
       state.opponentRaised = yes[1]
       state.userBetting = null
       state.opponentBetting = null
+      state.turn = 0
     },
     clickReStart: function(state, yes) {
       state.start = yes[0]
@@ -202,6 +208,9 @@ export default new Vuex.Store({
     },
     openCards: function (state) {
       state.start = 'open'
+    },
+    nextTurn: function (state) {
+      state.turn++
     }
   },
   actions: {
