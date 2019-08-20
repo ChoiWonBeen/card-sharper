@@ -40,10 +40,10 @@
                         <div v-if="(battleResult[3] === 3)">
                             <v-card-title>무승부!</v-card-title>
                             <v-card-text>
-                                <div>둘 다 {{ battleResult[1] }}(으)로 비겼습니다.</div>
+                                <div>{{ battleResult[0] }}</div>
 
                                 <div class="my-4 subtitle-1 black--text">
-                                    $ • {{raisedSum}}원이 다음 게임의 판돈이 됩니다.
+                                    $ • {{ raisedSum }}원이 다음 게임의 판돈이 됩니다.
                                 </div>
                             </v-card-text>
                         </div>

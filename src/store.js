@@ -99,11 +99,11 @@ export default new Vuex.Store({
           return [0,'땡잡이']
         }
         else if(cards[0]===3 && cards[1]===7){
-          return [45,'멍텅구리 구사']
+          return [1,'멍텅구리 구사']
         }
         else if(cards[0]===4 && cards[1]===19 || cards[0]===9 && cards[1]===14 ||
             cards[0]===14 && cards[1]===19 ){
-          return [40,'구사']
+          return [1,'구사']
         }
         else{
           return [(cards[0]+cards[1])%10,(cards[0]+cards[1])%10+'끗']
@@ -113,7 +113,20 @@ export default new Vuex.Store({
       let userResult = jokbo(users)
       let opponentResult = jokbo(opponents)
 
-      if (userResult[0]>opponentResult[0]){
+      if (userResult[1] === '땡잡이' && 90<= opponentResult[0] && opponentResult >= 99){
+        return ['땡잡았다!',userResult[1], opponentResult[1],1]
+      }
+      else if(opponentResult[1] === '땡잡이' && 90<= userResult[0] && userResult >= 99){
+        return ['땡잡혔다!',userResult[1], opponentResult[1],2]
+      }
+      else if((userResult[1]==='구사' && opponentResult[0] <= 100) || (opponentResult[1] === '구사' && userResult[0]<= 100) ){
+        return ['구사 재경기!',userResult[1],opponentResult[1],3]
+      }
+      else if((userResult[1]==='멍텅구리 구사' && opponentResult[0] <= 101) || (opponentResult[1] === '멍텅구리 구사' && userResult[0]<= 101) ){
+        return ['멍텅구리 구사 재경기!',userResult[1],opponentResult[1],3]
+      }
+
+      else if (userResult[0]>opponentResult[0]){
         return [userResult[1]+'(으)로 이겼습니다', userResult[1], opponentResult[1],1]
       }
       else if (userResult[0]<opponentResult[0]){
