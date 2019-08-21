@@ -8,6 +8,7 @@
                     justify-center
                     align-center
                     class="board__money"
+                    @click="setCookie(userMoney)"
             >
 
                 <template v-if="start==='open'">
@@ -213,10 +214,15 @@
             ReMatch: function (raisingSum) {
                 this.clickReStart(['yes',raisingSum])
                 this.shuffle()
+            },
+            setCookie: function (userMoney){
+                let date = new Date()
+                date.setTime(date.getTime()+(7*24*60*60*1000));
+                document.cookie="userMoney=" + userMoney + "; expires=" +date.toGMTString()+"; path='/';"
             }
         },
         computed: {
-            ...mapGetters(['raisedSum','opponentRaised','userRaised','battleResult','start'])
+            ...mapGetters(['raisedSum','opponentRaised','userRaised','battleResult','start','userMoney'])
         }
     }
 </script>

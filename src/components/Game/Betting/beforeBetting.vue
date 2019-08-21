@@ -1,21 +1,18 @@
 <template>
     <v-content>
-        <div class="mainText headline">
-            싸늘하다.... <br><br> 가슴에 비수가 날아와 꽂힌다... <br> <br> 하지만 걱정 마라. <br> 손은 눈보다 빠르니까.
-        </div>
         <v-container
                 fluid
                 fill-height
         >
-
             <v-layout
                     justify-center
                     align-center
-                    class="board__money"
             >
-                <v-btn
-                        @click="startButton()"
-                        class="ma-2" tile color="primary" dark>Game Start!</v-btn>
+                <v-row justify="center">
+                    <v-btn
+                            @click="startButton()"
+                            class="ma-2" tile color="primary" dark>Game Start!</v-btn>
+                </v-row>
             </v-layout>
         </v-container>
     </v-content>
@@ -40,12 +37,4 @@
 </script>
 
 <style scoped>
-    .mainText{
-        text-align: center;
-        height: 0px;
-        float: left;
-        margin-left: 32%;
-        margin-top: 20%;
-        width: 300px;
-    }
 </style>

@@ -8,6 +8,7 @@
                     justify-center
                     align-center
                     class="board__money"
+                    @click="getCookie()"
             >
                 <v-btn class="ma-2" tile color="error" dark>{{ opponentRaised }}</v-btn>
             </v-layout>
@@ -196,10 +197,12 @@
                 else if(battleResult[3]===2){
                     this.youLose(sumRaising)
                 }
-                else if(battleResult[3]===3){
-
-                }
             },
+            getCookie: function () {
+                let cookie = document.cookie
+                let moneyValue = Number(cookie.substr(10,10))
+                alert(moneyValue)
+            }
         },
         data () {
             return {
