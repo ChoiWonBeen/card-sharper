@@ -163,7 +163,6 @@
                                     color="deep-purple accent-4"
                                     text
                                     @click="ReStart(selection)"
-                                    v-if="(battleResult[3]===1 || battleResult[3]=== 2)"
                             >
                                 시작!
                             </v-btn>

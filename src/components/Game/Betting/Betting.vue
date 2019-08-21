@@ -18,7 +18,7 @@
                     align-center
             >
                 <v-flex shrink>
-                    <v-card class="betting">
+                    <v-card class="betting" v-if="(playing==='user')" style="width: 200px">
                         <v-list rounded>
                             <v-subheader>전체 판돈 : {{ raisedSum }}</v-subheader>
                             <v-list-item-group color="primary">
@@ -81,6 +81,16 @@
                             </v-list-item-group>
                         </v-list>
                     </v-card>
+                    <v-card v-if="playing==='opponent'" style="width: 200px">
+                        <v-subheader>상대방의 턴!</v-subheader>
+                        <div align="center">
+                            <v-progress-circular
+                                    indeterminate
+                                    color="amber"
+                                    style="margin-bottom: 30px"
+                            ></v-progress-circular>
+                        </div>
+                    </v-card>
                 </v-flex>
             </v-layout>
 
@@ -103,17 +113,17 @@
         name: "Betting",
         computed: {
             ...mapGetters(['userRaised','opponentRaised','raisedSum','userMoney',
-                'userHand1','userHand2','opponentHand1','opponentHand2','battleResult','turn'])
+                'userHand1','userHand2','opponentHand1','opponentHand2','battleResult','turn','playing'])
         },
         methods: {
             ...mapMutations(['called','half','bbing','ddadang','opponentCall','opponentHalf'
                             ,'opponentDdadang','opponentDie','betOpponent','betUser'
                             ,'youWin','youLose','youDraw', 'openCards','shuffle','nextTurn'
-                            ,'opponentDie','userDie']),
+                            ,'opponentDie','userDie','userPlaying','opponentPlaying']),
             goCall: function (opponentRaising, userRaising, sumRaising, startCallback, battleResult) {
                 this.called(opponentRaising)
+                this.opponentPlaying()
                 this.betUser('콜!')
-                this.nextTurn()
                 if(opponentRaising === userRaising){ this.endSet(battleResult, sumRaising) }
                 else {
                     this._promise(true)
@@ -124,8 +134,8 @@
             },
             goHalf: function (opponentRaising, userRaising, sumRaising, startCallback, battleResult) {
                 this.half(sumRaising)
+                this.opponentPlaying()
                 this.betUser('하프!')
-                this.nextTurn()
                 this._promise(true)
                     .then(function () {
                         startCallback(opponentRaising, userRaising+sumRaising/2, sumRaising+sumRaising/2, battleResult)
@@ -133,8 +143,8 @@
             },
             goBbing: function (opponentRaising, userRaising, sumRaising, startCallback, battleResult) {
                 this.bbing(userRaising)
+                this.opponentPlaying()
                 this.betUser('삥!')
-                this.nextTurn()
                 this._promise(true)
                     .then(function () {
                         startCallback(opponentRaising, userRaising*2, sumRaising+userRaising, battleResult)
@@ -142,8 +152,8 @@
             },
             goDdadang: function (opponentRaising, userRaising, sumRaising, startCallback, battleResult) {
                 this.ddadang(opponentRaising)
+                this.opponentPlaying()
                 this.betUser('따당!')
-                this.nextTurn()
                 this._promise(true)
                     .then(function () {
                         startCallback(opponentRaising, opponentRaising*2, (sumRaising-userRaising+opponentRaising)*2, battleResult)
@@ -157,15 +167,17 @@
                 return new Promise(function (resolve, reject) {
                     window.setTimeout(function () {
                         if (param) {
-                            resolve("해결 완료");
+                            resolve();
                         }
                         else {
-                            reject(Error("실패!!"));
+                            reject(Error());
                         }
                     }, 3000);
                 });
             },
             startCallback : function (opponentRaising, userRaising, sumRaising, battleResult) {
+                this.userPlaying()
+                this.nextTurn()
                 let random = Math.floor(Math.random() * (9) + 1)
 
                 if( 1 <= random && random <= 4){

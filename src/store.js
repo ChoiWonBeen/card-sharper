@@ -18,6 +18,7 @@ export default new Vuex.Store({
     opponentHand1:null,
     opponentHand2:null,
     turn:0,
+    playing:'user'
   },
   getters: {
     userMoney: function (state) {
@@ -155,6 +156,9 @@ export default new Vuex.Store({
     },
     turn: function(state){
       return state.turn
+    },
+    playing: function (state) {
+      return state.playing
     }
   },
   mutations: {
@@ -247,6 +251,12 @@ export default new Vuex.Store({
     },
     userDie: function (state) {
       state.start = 'userDie'
+    },
+    userPlaying: function (state) {
+      state.playing = 'user'
+    },
+    opponentPlaying: function (state) {
+      state.playing = 'opponent'
     }
   },
   actions: {
