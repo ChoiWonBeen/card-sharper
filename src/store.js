@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     start:'no',
-    userMoney: 100000,
+    userMoney: 10000,
     opponentMoney: 100000,
     raisedSum:0,
     userRaised:0,

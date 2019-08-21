@@ -22,7 +22,7 @@
                             <v-subheader>전체 판돈 : {{ raisedSum }}</v-subheader>
                             <v-list-item-group color="primary">
 
-                                <v-list-item v-if="(turn)" >
+                                <v-list-item v-if="(turn) && (userMoney >= opponentRaised - userRaised)" >
                                     <v-tooltip right>
                                         <template v-slot:activator="{ on }">
                                             <v-list-item-content v-on="on" @click="goCall(opponentRaised, userRaised, raisedSum, startCallback, battleResult)">
@@ -33,7 +33,7 @@
                                     </v-tooltip>
                                 </v-list-item>
 
-                                <v-list-item>
+                                <v-list-item v-if="(userMoney >= raisedSum/2)">
                                     <v-tooltip right>
                                         <template v-slot:activator="{ on }">
                                             <v-list-item-content v-on="on" @click="goHalf(opponentRaised, userRaised, raisedSum, startCallback, battleResult)">
@@ -44,7 +44,7 @@
                                     </v-tooltip>
                                 </v-list-item>
 
-                                <v-list-item v-if="(turn === 0)">
+                                <v-list-item v-if="(turn === 0) && (userMoney >= userRaised)">
                                     <v-tooltip right>
                                         <template v-slot:activator="{ on }">
                                             <v-list-item-content v-on="on" @click="goBbing(opponentRaised, userRaised, raisedSum, startCallback, battleResult)">
@@ -55,7 +55,7 @@
                                     </v-tooltip>
                                 </v-list-item>
 
-                                <v-list-item>
+                                <v-list-item v-if="(userMoney >= opponentRaised*2 - userRaised)">
                                     <v-tooltip right>
                                         <template v-slot:activator="{ on }">
                                             <v-list-item-content v-on="on" @click="goDdadang(opponentRaised, userRaised, raisedSum, startCallback, battleResult)">
