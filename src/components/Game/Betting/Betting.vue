@@ -82,12 +82,12 @@
                         </v-list>
                     </v-card>
                     <v-card v-if="playing==='opponent'" style="width: 200px">
-                        <v-subheader>상대방의 턴!</v-subheader>
+                        <v-subheader>상대방이 베팅중입니다!</v-subheader>
                         <div align="center">
                             <v-progress-circular
                                     indeterminate
                                     color="amber"
-                                    style="margin-bottom: 30px"
+                                    style="margin-bottom: 30px; margin-top: 10px;"
                             ></v-progress-circular>
                         </div>
                     </v-card>
@@ -203,6 +203,7 @@
             },
             endSet: function (battleResult, sumRaising) {
                 this.openCards()
+                this.userPlaying()
                 if(battleResult[3]===1){
                     this.youWin(sumRaising)
                 }
