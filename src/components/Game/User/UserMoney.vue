@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="(start!=='no')">
         <div class="user__money title">
             소지 금액 : {{ userMoney }}
         </div>

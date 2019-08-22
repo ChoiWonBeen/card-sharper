@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     start:'no',
-    userMoney: 10000,
+    userMoney: 0,
     opponentMoney: 100000,
     raisedSum:0,
     userRaised:0,
@@ -163,6 +163,14 @@ export default new Vuex.Store({
   },
   mutations: {
     clickStart: function (state, yes) {
+      let cookie = document.cookie
+      let moneyValue = Number(cookie.substr(10,10))
+      if(moneyValue!==0){
+        state.userMoney = moneyValue
+      }
+      else {
+        state.userMoney += 10000
+      }
       state.start = yes[0]
       state.userMoney -= yes[1]
       state.opponentMoney -= yes[1]
