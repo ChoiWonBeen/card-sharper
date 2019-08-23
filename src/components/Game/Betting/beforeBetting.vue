@@ -50,7 +50,9 @@
                     <v-btn
                             @click="startButton()"
                             style="float: right"
-                            class="ma-2" tile color="primary" dark>Game Start!</v-btn>
+                            class="ma-2" tile color="primary" dark>
+                                섯다 시작!
+                    </v-btn>
                 </v-card>
             </v-layout>
         </v-container>
