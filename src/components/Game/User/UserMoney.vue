@@ -1,7 +1,7 @@
 <template>
     <div v-if="(start!=='no')">
         <div class="user__money title">
-            소지 금액 : {{ userMoney }}
+            소지 금액 : {{ numberWithCommas(userMoney) }}
         </div>
         <div class="user__betting font-weight-black display-1">
             {{ userBetting }}
@@ -15,6 +15,11 @@
         name: "UserMoney",
         computed: {
             ...mapGetters(['userMoney','start','userBetting'])
+        },
+        methods: {
+            numberWithCommas : function (money) {
+                return money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
         }
     }
 </script>
