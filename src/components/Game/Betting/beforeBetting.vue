@@ -92,7 +92,7 @@
                     color: '#952175',
                     src: 'https://miro.medium.com/max/2560/1*CubX6bWeA5pwe_IfEY4kmg.png',
                     title: '상대방은 봇입니다!',
-                    artist: '그렇다고 높은 수준의 A.I를 기대하진 말아주세요. 확률에 의해 베팅할 뿐이라구요',
+                    artist: '그렇다고 높은 수준의 A.I를 기대하진 말아주세요. 확률에 의해 베팅할 뿐이라구요! 기본 판돈 100원부터 시작해봅시다!',
                 },
             ],
         }),

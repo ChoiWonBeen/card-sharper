@@ -37,8 +37,13 @@
 </template>
 
 <script>
+    import {mapGetters} from'vuex'
+
     export default {
-        name: "leftPedigree"
+        name: "leftPedigree",
+        computed: {
+            ...mapGetters['battleResult']
+        }
     }
 </script>
 
