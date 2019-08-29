@@ -27,7 +27,7 @@
 <style scoped>
     .user__money {
         text-align: right;
-        margin-right: 300px;
+        margin-right: 25%;
         float: right;
     }
     .user__betting {

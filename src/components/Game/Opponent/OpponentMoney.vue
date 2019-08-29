@@ -26,7 +26,7 @@
 
 <style scoped>
     .opponent__money {
-        margin-left: 300px;
+        margin-left: 25%;
         float: left;
     }
     .opponent__betting{
