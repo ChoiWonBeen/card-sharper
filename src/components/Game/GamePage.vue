@@ -32,9 +32,6 @@
     import afterBetting from "./Betting/afterBetting"
 
     export default {
-        props: {
-
-        },
         components: {
             'fnb' : fnb,
             'opponent-field': OpponentField,
@@ -50,7 +47,6 @@
         computed: {
             ...mapGetters(['start'])
         }
-        
     }
 </script>
 

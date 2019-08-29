@@ -21,7 +21,7 @@
         </v-list>
     </v-navigation-drawer>
 </template>
-을
+
 <script>
     export default {
         name: "rightPedigree"
