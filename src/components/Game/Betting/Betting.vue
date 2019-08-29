@@ -17,10 +17,8 @@
                     align-center
             >
                 <v-flex shrink>
-
                     <select-betting v-if="(playing==='user')"></select-betting>
                     <loading v-if="(playing==='opponent')"></loading>
-
                 </v-flex>
             </v-layout>
 
