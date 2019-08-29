@@ -1,9 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import playing from './modules/playing'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  modules: {
+    playing
+  },
   state: {
     start:'no',
     userMoney: 10000,
@@ -18,7 +22,6 @@ export default new Vuex.Store({
     opponentHand1:null,
     opponentHand2:null,
     turn:0,
-    playing:'user'
   },
   getters: {
     userMoney: function (state) {
@@ -154,11 +157,8 @@ export default new Vuex.Store({
         return [userResult[1]+'(으)로 무승부입니다.', userResult[1], opponentResult[1],3]
       }
     },
-    turn: function(state){
+    turn: function(state) {
       return state.turn
-    },
-    playing: function (state) {
-      return state.playing
     }
   },
   mutations: {
@@ -260,14 +260,6 @@ export default new Vuex.Store({
     userDie: function (state) {
       state.start = 'userDie'
     },
-    userPlaying: function (state) {
-      state.playing = 'user'
-    },
-    opponentPlaying: function (state) {
-      state.playing = 'opponent'
-    }
-  },
-  actions: {
-
   }
+
 })
