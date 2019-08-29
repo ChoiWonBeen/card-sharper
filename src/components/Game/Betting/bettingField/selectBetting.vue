@@ -5,13 +5,9 @@
             <v-list-item-group color="primary">
 
                 <call></call>
-
                 <half></half>
-
                 <bbing></bbing>
-
                 <ddadang></ddadang>
-
                 <die></die>
 
             </v-list-item-group>
