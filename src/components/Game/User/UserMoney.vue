@@ -1,9 +1,9 @@
 <template>
     <div v-if="(start!=='no')">
-        <div class="user__money title">
-            소지 금액 : {{ numberWithCommas(userMoney) }}
+        <div class="user__money title money__box">
+            &#8361{{ numberWithCommas(userMoney) }}
         </div>
-        <div class="user__betting font-weight-black display-1">
+        <div class="user__betting font-weight-black display-1" style="color: white">
             {{ userBetting }}
         </div>
     </div>
@@ -33,5 +33,14 @@
     .user__betting {
         float: left;
         margin-left: 25%;
+    }
+    .money__box{
+        background-color: #40393b;
+        border-radius: 30px;
+        box-shadow: 0px 0px 30px #2D8DBD;
+        color: cornsilk;
+        padding: 15px;
+        left: 50px;
+        display: inline-block;
     }
 </style>

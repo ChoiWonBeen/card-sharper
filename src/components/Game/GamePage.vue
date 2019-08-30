@@ -1,5 +1,5 @@
 <template>
-    <v-app id="inspire">
+    <v-app id="inspire" :style="{backgroundImage: 'url(https://images2.alphacoders.com/201/thumb-1920-201750.jpg)'}">
         <right-pedigree></right-pedigree>
         <left-pedigree></left-pedigree>
 

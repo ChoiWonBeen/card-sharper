@@ -5,7 +5,7 @@
             class="white--text"
             height="40px"
     >
-        <span>타짜 ver.1.5.6 by. WonBeenC</span>
+        <span>타짜 ver.1.5.7 by. WonBeenC</span>
         <span style="float: right">
             <img src="https://image.flaticon.com/icons/png/512/87/87390.png" class="footer__img"
                  alt="instagram" @click="clickImg('https://www.instagram.com/choi_1been/?hl=ko')"

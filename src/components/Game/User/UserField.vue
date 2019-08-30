@@ -5,12 +5,12 @@
                     <v-img  v-on="on"
                             max-width="46"
                             max-height="72"
-                            :src="getCard(userHand1)" alt="" class="card"></v-img>
+                            :src="getCard(userHand1)" alt="1번패" class="card"></v-img>
                     <v-img v-on="on"
                             max-width="46"
                             max-height="72"
                            @click="checkIt(userHand2)"
-                            :src="getCard(userHand2)" alt="" class="card"></v-img>
+                            :src="getCard(userHand2)" alt="2번패" class="card"></v-img>
             </template>
             <span>{{battleResult[1]}}</span>
         </v-tooltip>
