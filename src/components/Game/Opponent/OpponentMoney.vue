@@ -1,7 +1,7 @@
 <template>
     <div v-if="(start!=='no')">
         <div class="opponent__money title money__box">
-            &#8361{{ numberWithCommas(opponentMoney) }}
+            &#8361;{{ numberWithCommas(opponentMoney) }}
         </div>
         <div class="opponent__betting font-weight-black display-1" style="color: white">
             {{ opponentBetting }}
